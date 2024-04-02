@@ -9,7 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
@@ -36,4 +36,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+	public function role()
+	{
+		return $this->belongsTo(Role::class); 
+	}
 }
