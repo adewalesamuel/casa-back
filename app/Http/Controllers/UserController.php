@@ -68,18 +68,18 @@ class UserController extends Controller
 		$user->numero_telegram = $validated['numero_telegram'] ?? null;
 		$user->company_name = $validated['company_name'] ?? null;
 		$user->company_logo_url = $validated['company_logo_url'] ?? null;
-		$user->type = $validated['type'] ?? null;
+		$user->type = $validated['type'] ?? 'client';
 		$user->api_token = $validated['api_token'] ?? null;
-		$user->is_active = $validated['is_active'] ?? null;
-		$user->is_company = $validated['is_company'] ?? null;
-		
+		$user->is_active = $validated['is_active'] ?? true;
+		$user->is_company = $validated['is_company'] ?? false;
+
         $user->save();
 
         $data = [
             'success'       => true,
             'user'   => $user
         ];
-        
+
         return response()->json($data);
     }
 
@@ -132,18 +132,18 @@ class UserController extends Controller
 		$user->numero_telegram = $validated['numero_telegram'] ?? null;
 		$user->company_name = $validated['company_name'] ?? null;
 		$user->company_logo_url = $validated['company_logo_url'] ?? null;
-		$user->type = $validated['type'] ?? null;
+		$user->type = $validated['type'] ?? 'client';
 		$user->api_token = $validated['api_token'] ?? null;
-		$user->is_active = $validated['is_active'] ?? null;
-		$user->is_company = $validated['is_company'] ?? null;
-		
+		$user->is_active = $validated['is_active'] ?? true;
+		$user->is_company = $validated['is_company'] ?? false;
+
         $user->save();
 
         $data = [
             'success'       => true,
             'user'   => $user
         ];
-        
+
         return response()->json($data);
     }
 
@@ -154,7 +154,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-    {   
+    {
         $user->delete();
 
         $data = [
