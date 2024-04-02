@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
@@ -20,7 +21,7 @@ class UserController extends Controller
     	$users = User::where('id', '>', -1)
         ->orderBy('created_at', 'desc');
 
-        if ($request->input('page') == null || 
+        if ($request->input('page') == null ||
             $request->input('page') == '') {
             $users = $users->get();
         } else {
@@ -69,7 +70,7 @@ class UserController extends Controller
 		$user->company_name = $validated['company_name'] ?? null;
 		$user->company_logo_url = $validated['company_logo_url'] ?? null;
 		$user->type = $validated['type'] ?? 'client';
-		$user->api_token = $validated['api_token'] ?? null;
+		$user->api_token = Str::random(60);
 		$user->is_active = $validated['is_active'] ?? true;
 		$user->is_company = $validated['is_company'] ?? false;
 
@@ -91,6 +92,18 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $data = [
+            'success' => true,
+            'user' => $user
+        ];
+
+        return response()->json($data);
+    }
+
+    public function profile_show(Request $request, User $user)
+    {
+        $user = Auth::getUser($request, Auth::USER);
+
         $data = [
             'success' => true,
             'user' => $user
@@ -133,8 +146,36 @@ class UserController extends Controller
 		$user->company_name = $validated['company_name'] ?? null;
 		$user->company_logo_url = $validated['company_logo_url'] ?? null;
 		$user->type = $validated['type'] ?? 'client';
-		$user->api_token = $validated['api_token'] ?? null;
 		$user->is_active = $validated['is_active'] ?? true;
+		$user->is_company = $validated['is_company'] ?? false;
+
+        $user->save();
+
+        $data = [
+            'success'       => true,
+            'user'   => $user
+        ];
+
+        return response()->json($data);
+    }
+
+    public function profile_update(UpdateUserRequest $request)
+    {
+        $user = Auth::getUser($request, Auth::USER);
+        $validated = $request->validated();
+
+        $user->nom = $validated['nom'] ?? null;
+		$user->email = $validated['email'] ?? null;
+		$user->password = $validated['password'] ?? null;
+		$user->profile_img_url = $validated['profile_img_url'] ?? null;
+		$user->genre = $validated['genre'] ?? null;
+		$user->adresse = $validated['adresse'] ?? null;
+		$user->numero_telephone = $validated['numero_telephone'] ?? null;
+		$user->numero_whatsapp = $validated['numero_whatsapp'] ?? null;
+		$user->numero_telegram = $validated['numero_telegram'] ?? null;
+		$user->company_name = $validated['company_name'] ?? null;
+		$user->company_logo_url = $validated['company_logo_url'] ?? null;
+		$user->type = $validated['type'] ?? 'client';
 		$user->is_company = $validated['is_company'] ?? false;
 
         $user->save();
@@ -155,7 +196,21 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        $user->forceDelete();
+
+        $data = [
+            'success' => true,
+            'user' => $user
+        ];
+
+        return response()->json($data);
+    }
+
+    public function profile_destroy(Request $request)
+    {
+        $user = Auth::getUser($request, Auth::USER);
+
+        $user->forceDelete();
 
         $data = [
             'success' => true,

@@ -24,22 +24,19 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
+            'nom' => 'nullable|string',
 			'email' => 'required|string|unique:users',
-			'password' => 'required|string|unique:users',
-			'profile_img_url' => 'required|string',
-			'genre' => 'required|string',
-			'adresse' => 'required|string',
-			'numero_telephone' => 'required|string',
-			'numero_whatsapp' => 'required|string',
-			'numero_telegram' => 'required|string',
-			'company_name' => 'required|string',
-			'company_logo_url' => 'required|string',
-			'type' => 'required|string',
-			'api_token' => 'required|string',
-			'is_active' => 'required|boolean',
-			'is_company' => 'required|boolean',
-			
+			'password' => 'required|string',
+			'profile_img_url' => 'nullable|string',
+			'genre' => 'nullable|string',
+			'adresse' => 'nullable|string',
+			'numero_telephone' => 'nullable|string',
+			'numero_whatsapp' => 'nullable|string',
+			'numero_telegram' => 'nullable|string',
+			'company_name' => 'nullable|string',
+			'company_logo_url' => 'nullable|string',
+			'type' => 'nullable|string',
+
         ];
     }
 }

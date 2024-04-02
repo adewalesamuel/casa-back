@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Auth;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCommentRequest;
@@ -20,7 +21,7 @@ class CommentController extends Controller
     	$comments = Comment::where('id', '>', -1)
         ->orderBy('created_at', 'desc');
 
-        if ($request->input('page') == null || 
+        if ($request->input('page') == null ||
             $request->input('page') == '') {
             $comments = $comments->get();
         } else {
@@ -61,14 +62,36 @@ class CommentController extends Controller
 		$comment->score = $validated['score'] ?? null;
 		$comment->product_id = $validated['product_id'] ?? null;
 		$comment->user_id = $validated['user_id'] ?? null;
-		
+
         $comment->save();
 
         $data = [
             'success'       => true,
             'comment'   => $comment
         ];
-        
+
+        return response()->json($data);
+    }
+
+    public function user_store(StoreCommentRequest $request)
+    {
+        $user = Auth::getUser($request, Auth::USER);
+        $validated = $request->validated();
+
+        $comment = new Comment;
+
+        $comment->description = $validated['description'] ?? null;
+		$comment->score = $validated['score'] ?? null;
+		$comment->product_id = $validated['product_id'] ?? null;
+		$comment->user_id = $user->id;
+
+        $comment->save();
+
+        $data = [
+            'success'       => true,
+            'comment'   => $comment
+        ];
+
         return response()->json($data);
     }
 
@@ -114,14 +137,43 @@ class CommentController extends Controller
 		$comment->score = $validated['score'] ?? null;
 		$comment->product_id = $validated['product_id'] ?? null;
 		$comment->user_id = $validated['user_id'] ?? null;
-		
+
         $comment->save();
 
         $data = [
             'success'       => true,
             'comment'   => $comment
         ];
-        
+
+        return response()->json($data);
+    }
+
+    public function user_update(UpdateCommentRequest $request, Comment $comment)
+    {
+        $user = Auth::getUser($request, Auth::USER);
+        $validated = $request->validated();
+
+        if ($user->id !== $comment->user_id) {
+            $data = [
+                'error' => true,
+                'message' => 'forbidden'
+            ];
+
+            return response()->json($data, 403);
+        }
+
+        $comment->description = $validated['description'] ?? null;
+		$comment->score = $validated['score'] ?? null;
+		$comment->product_id = $validated['product_id'] ?? null;
+		$comment->user_id = $validated['user_id'] ?? null;
+
+        $comment->save();
+
+        $data = [
+            'success'       => true,
+            'comment'   => $comment
+        ];
+
         return response()->json($data);
     }
 
@@ -132,8 +184,31 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comment $comment)
-    {   
+    {
         $comment->delete();
+
+        $data = [
+            'success' => true,
+            'comment' => $comment
+        ];
+
+        return response()->json($data);
+    }
+
+    public function user_destroy(Request $request, Comment $comment)
+    {
+        $user = Auth::getUser($request, Auth::USER);
+
+        if ($user->id !== $comment->user_id) {
+            $data = [
+                'error' => true,
+                'message' => 'forbidden'
+            ];
+
+            return response()->json($data, 403);
+        }
+
+        $comment->forceDelete();
 
         $data = [
             'success' => true,
