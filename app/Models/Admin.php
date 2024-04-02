@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Admin extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -38,6 +38,6 @@ class Admin extends Authenticatable
     }
 	public function role()
 	{
-		return $this->belongsTo(Role::class); 
+		return $this->belongsTo(Role::class);
 	}
 }

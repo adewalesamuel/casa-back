@@ -15,11 +15,9 @@ class CreatePromoCodesTable extends Migration
     {
         Schema::create('promo_codes', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('code')
-			->constrained()
-			->onDelete('cascade');
+			$table->string('code')->unique();
 			$table->date('expiration_date');
-			$table->enum('type');
+			$table->enum('type', ['individuel', 'general'])->default('individuel');
 			$table->foreignId('user_id')
 			->constrained()
 			->onDelete('cascade');

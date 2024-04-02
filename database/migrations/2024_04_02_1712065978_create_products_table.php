@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
 			$table->string('slug')->unique();
 			$table->text('description')->nullable()->default('');
 			$table->string('prix')->nullable()->default('');
-			$table->enum('type_paiement');
-			$table->enum('type');
+			$table->enum('type_paiement', ['jour', 'semaine', 'mois', 'an', 'unique'])->default('unique');
+			$table->enum('type', ['location', 'achat'])->default('location');
 			$table->json('display_img_url_list');
 			$table->json('images_url_list');
 			$table->foreignId('category_id')

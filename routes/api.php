@@ -65,17 +65,17 @@ Route::get('regions/{region}', [RegionController::class, 'show']);
 Route::put('regions/{region}', [RegionController::class, 'update']);
 Route::delete('regions/{region}', [RegionController::class, 'destroy']);
 
-Route::get('citys',[CityController::class, 'index']);
-Route::post('citys',[CityController::class, 'store']);
-Route::get('citys/{city}', [CityController::class, 'show']);
-Route::put('citys/{city}', [CityController::class, 'update']);
-Route::delete('citys/{city}', [CityController::class, 'destroy']);
+Route::get('cities',[CityController::class, 'index']);
+Route::post('cities',[CityController::class, 'store']);
+Route::get('cities/{city}', [CityController::class, 'show']);
+Route::put('cities/{city}', [CityController::class, 'update']);
+Route::delete('cities/{city}', [CityController::class, 'destroy']);
 
-Route::get('municipalitys',[MunicipalityController::class, 'index']);
-Route::post('municipalitys',[MunicipalityController::class, 'store']);
-Route::get('municipalitys/{municipality}', [MunicipalityController::class, 'show']);
-Route::put('municipalitys/{municipality}', [MunicipalityController::class, 'update']);
-Route::delete('municipalitys/{municipality}', [MunicipalityController::class, 'destroy']);
+Route::get('municipalities',[MunicipalityController::class, 'index']);
+Route::post('municipalities',[MunicipalityController::class, 'store']);
+Route::get('municipalities/{municipality}', [MunicipalityController::class, 'show']);
+Route::put('municipalities/{municipality}', [MunicipalityController::class, 'update']);
+Route::delete('municipalities/{municipality}', [MunicipalityController::class, 'destroy']);
 
 Route::get('features',[FeatureController::class, 'index']);
 Route::post('features',[FeatureController::class, 'store']);
