@@ -37,10 +37,15 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
-    public function category_index(Request $request, Category $category)
+    public function category_index(Request $request, string $slug)
     {
-    	$products = Product::where('category_id', $category->id)
-        ->orderBy('created_at', 'desc');
+    	$products = Product::orderBy('created_at', 'desc')
+        ->with(['category', 'municipality', 'municipality.city']);
+
+        if ($slug !== "all") {
+            $category = Category::where('slug', $slug)->first();
+            $products = $products->where('category_id', $category->id);
+        }
 
         if ($request->input('page') == null ||
             $request->input('page') == '') {

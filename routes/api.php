@@ -44,6 +44,7 @@ Route::get('municipalities/{municipality}', [MunicipalityController::class, 'sho
 
 Route::get('products',[ProductController::class, 'index']);
 Route::get('products/{product}', [ProductController::class, 'show']);
+Route::get('categories/{slug}/products', [ProductController::class, 'category_index']);
 
 Route::get('comments',[CommentController::class, 'index']);
 Route::get('comments/{comment}', [CommentController::class, 'show']);
@@ -53,10 +54,10 @@ Route::post('login', [ApiUserAuthController::class, 'login']);
 Route::post('logout', [ApiUserAuthController::class, 'logout']);
 
 Route::middleware('auth.api_token:user')->group(function() {
-    Route::get('products', [ProductController::class, 'user_index']);
-    Route::post('products',[ProductController::class, 'user_store']);
-    Route::put('products/{product}', [ProductController::class, 'user_update']);
-    Route::delete('products/{product}', [ProductController::class, 'user_destroy']);
+    Route::get('user/products', [ProductController::class, 'user_index']);
+    Route::post('user/products',[ProductController::class, 'user_store']);
+    Route::put('user/products/{product}', [ProductController::class, 'user_update']);
+    Route::delete('user/products/{product}', [ProductController::class, 'user_destroy']);
 
     Route::post('comments',[CommentController::class, 'user_store']);
     Route::put('comments/{comment}', [CommentController::class, 'user_update']);
