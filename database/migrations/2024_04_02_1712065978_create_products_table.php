@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
 			$table->string('nom')->nullable()->default('');
 			$table->string('slug')->unique();
 			$table->text('description')->nullable()->default('');
-			$table->string('prix')->nullable()->default('');
+			$table->integer('prix');
 			$table->enum('type_paiement', ['jour', 'semaine', 'mois', 'an', 'unique'])->default('unique');
 			$table->enum('type', ['location', 'achat'])->default('location');
 			$table->json('display_img_url_list');

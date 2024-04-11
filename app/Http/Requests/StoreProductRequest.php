@@ -27,7 +27,7 @@ class StoreProductRequest extends FormRequest
             'nom' => 'required|string',
 			'slug' => 'required|string|unique:products',
 			'description' => 'required|string',
-			'prix' => 'required|string',
+			'prix' => 'required|integer',
 			'type_paiement' => 'required|string',
 			'type' => 'required|string',
 			'display_img_url_list' => 'required|json',

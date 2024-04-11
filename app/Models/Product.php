@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Casts\Ucfirst;
+use App\Casts\Slug;
 
 class Product extends Model
 {
@@ -28,7 +29,8 @@ class Product extends Model
 		return [
 			'display_img_url_list' => 'json',
 			'images_url_list' => 'json',
-			'type' => Ucfirst::class
+			'type' => Ucfirst::class,
+			'type' => Slug::class
 		];
 	}
 }
