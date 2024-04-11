@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-    	$products = Product::where('id', '>', -1)
+    	$products = Product::with(['category', 'municipality', 'municipality.city'])
         ->orderBy('created_at', 'desc');
 
         if ($request->input('page') == null ||
