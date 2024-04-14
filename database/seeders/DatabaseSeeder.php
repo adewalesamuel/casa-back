@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($municipalities as $municipality) {
             foreach ($categories as $category) {
-                Product::factory()
+                Product::factory(3)
                 ->for($municipality)
                 ->for($category)
                 ->create();
