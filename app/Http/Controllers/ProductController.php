@@ -173,6 +173,20 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
+    public function show_by_slug(Request $request, string $slug)
+    {
+        $product = Product::with(['category', 'municipality', 'user', 'features'])
+        ->where('slug', $slug)->firstOrFail();
+
+        $data = [
+            'success' => true,
+            'product' => $product
+        ];
+
+        return response()->json($data);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

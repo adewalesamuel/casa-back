@@ -43,7 +43,7 @@ Route::get('municipalities',[MunicipalityController::class, 'index']);
 Route::get('municipalities/{municipality}', [MunicipalityController::class, 'show']);
 
 Route::get('products',[ProductController::class, 'index']);
-Route::get('products/{product}', [ProductController::class, 'show']);
+Route::get('products/{slug}', [ProductController::class, 'show_by_slug']);
 Route::get('categories/{slug}/products', [ProductController::class, 'category_index']);
 
 Route::get('comments',[CommentController::class, 'index']);
