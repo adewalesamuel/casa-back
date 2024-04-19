@@ -19,8 +19,19 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-    	$products = Product::with(['category', 'municipality', 'municipality.city'])
-        ->orderBy('created_at', 'desc');
+    	$products = Product::with([
+            'category',
+            'municipality',
+            'municipality.city'
+        ])->orderBy('created_at', 'desc');
+
+        if ($request->input('municipality_id')) {
+            $products = $products->where(
+                'municipality_id', $request->input('municipality_id'));
+        }
+
+        if ($request->input('nom'))
+            $products = $products->where('nom', 'like' ,"%{$request->input('nom')}%");
 
         if ($request->input('page') == null ||
             $request->input('page') == '') {

@@ -17,19 +17,19 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-    	$citys = City::where('id', '>', -1)
-        ->orderBy('created_at', 'desc');
+    	$cities = City::with(['municipalities'])
+        ->orderBy('nom', 'asc');
 
-        if ($request->input('page') == null || 
+        if ($request->input('page') == null ||
             $request->input('page') == '') {
-            $citys = $citys->get();
+            $cities = $cities->get();
         } else {
-            $citys = $citys->paginate();
+            $cities = $cities->paginate();
         }
 
         $data = [
             'success' => true,
-            'citys' => $citys
+            'cities' => $cities
         ];
 
         return response()->json($data);
@@ -60,14 +60,14 @@ class CityController extends Controller
         $city->nom = $validated['nom'] ?? null;
 		$city->slug = $validated['slug'] ?? null;
 		$city->region_id = $validated['region_id'] ?? null;
-		
+
         $city->save();
 
         $data = [
             'success'       => true,
             'city'   => $city
         ];
-        
+
         return response()->json($data);
     }
 
@@ -112,14 +112,14 @@ class CityController extends Controller
         $city->nom = $validated['nom'] ?? null;
 		$city->slug = $validated['slug'] ?? null;
 		$city->region_id = $validated['region_id'] ?? null;
-		
+
         $city->save();
 
         $data = [
             'success'       => true,
             'city'   => $city
         ];
-        
+
         return response()->json($data);
     }
 
@@ -130,7 +130,7 @@ class CityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(City $city)
-    {   
+    {
         $city->delete();
 
         $data = [
