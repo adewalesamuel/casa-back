@@ -24,13 +24,13 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
-			'slug' => 'required|string|unique:categories',
-			'description' => 'required|string',
-			'icon_img_url' => 'required|string',
-			'display_img_url' => 'required|string',
-			'quantite' => 'required|integer',
-			'category_id' => 'required|integer|exists:categories,id',
+            'nom' => 'nullable|string',
+			'slug' => 'nullable|string',
+			'description' => 'nullable|string',
+			'icon_img_url' => 'nullable|string',
+			'display_img_url' => 'nullable|string',
+			'quantite' => 'nullable|integer',
+			'category_id' => 'nullable|integer|exists:categories,id',
 
         ];
     }

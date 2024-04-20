@@ -24,11 +24,11 @@ class UpdateFeatureRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
-			'slug' => 'required|string|unique:features',
-			'icon_img_url' => 'required|string',
-			'display_img_url' => 'required|string',
-			
+            'nom' => 'nullable|string',
+			'slug' => 'nullable|string',
+			'icon_img_url' => 'nullable|string',
+			'display_img_url' => 'nullable|string',
+
         ];
     }
 }

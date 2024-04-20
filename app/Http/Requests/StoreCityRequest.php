@@ -25,9 +25,9 @@ class StoreCityRequest extends FormRequest
     {
         return [
             'nom' => 'required|string',
-			'slug' => 'required|string|unique:citys',
+			'slug' => 'required|string|unique:cities',
 			'region_id' => 'required|integer|exists:regions,id',
-			
+
         ];
     }
 }

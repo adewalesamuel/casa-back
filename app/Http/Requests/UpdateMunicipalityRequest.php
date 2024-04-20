@@ -24,10 +24,10 @@ class UpdateMunicipalityRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
-			'slug' => 'required|string|unique:municipalitys',
-			'city_id' => 'required|integer|exists:citys,id',
-			
+            'nom' => 'nullable|string',
+			'slug' => 'nullable|string',
+			'city_id' => 'nullable|integer|exists:cities,id',
+
         ];
     }
 }

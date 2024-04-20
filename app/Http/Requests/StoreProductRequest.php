@@ -33,7 +33,7 @@ class StoreProductRequest extends FormRequest
 			'display_img_url_list' => 'required|json',
 			'images_url_list' => 'required|json',
 			'category_id' => 'required|integer|exists:categories,id',
-			'municipality_id' => 'required|integer|exists:municipalitys,id',
+			'municipality_id' => 'required|integer|exists:municipalities,id',
 			'user_id' => 'required|integer|exists:users,id',
 
         ];

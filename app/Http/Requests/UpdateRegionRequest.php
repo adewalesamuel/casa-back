@@ -24,9 +24,9 @@ class UpdateRegionRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
-			'slug' => 'required|string|unique:regions',
-			
+            'nom' => 'nullable|string',
+			'slug' => 'nullable|string',
+
         ];
     }
 }

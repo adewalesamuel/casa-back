@@ -25,9 +25,9 @@ class StoreMunicipalityRequest extends FormRequest
     {
         return [
             'nom' => 'required|string',
-			'slug' => 'required|string|unique:municipalitys',
-			'city_id' => 'required|integer|exists:citys,id',
-			
+			'slug' => 'required|string|unique:municipalities',
+			'city_id' => 'required|integer|exists:cities,id',
+
         ];
     }
 }

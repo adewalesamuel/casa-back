@@ -24,10 +24,10 @@ class UpdateFeatureProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'feature_id' => 'required|integer|exists:features,id',
-			'product_id' => 'required|integer|exists:products,id',
-			'quantite' => 'required|integer',
-			
+            'feature_id' => 'nullable|integer|exists:features,id',
+			'product_id' => 'nullable|integer|exists:products,id',
+			'quantite' => 'nullable|integer',
+
         ];
     }
 }

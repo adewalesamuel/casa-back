@@ -17,19 +17,19 @@ class MunicipalityController extends Controller
      */
     public function index(Request $request)
     {
-    	$municipalitys = Municipality::where('id', '>', -1)
+    	$municipalities = Municipality::where('id', '>', -1)
         ->orderBy('created_at', 'desc');
 
-        if ($request->input('page') == null || 
+        if ($request->input('page') == null ||
             $request->input('page') == '') {
-            $municipalitys = $municipalitys->get();
+            $municipalities = $municipalities->get();
         } else {
-            $municipalitys = $municipalitys->paginate();
+            $municipalities = $municipalities->paginate();
         }
 
         $data = [
             'success' => true,
-            'municipalitys' => $municipalitys
+            'municipalities' => $municipalities
         ];
 
         return response()->json($data);
@@ -60,14 +60,14 @@ class MunicipalityController extends Controller
         $municipality->nom = $validated['nom'] ?? null;
 		$municipality->slug = $validated['slug'] ?? null;
 		$municipality->city_id = $validated['city_id'] ?? null;
-		
+
         $municipality->save();
 
         $data = [
             'success'       => true,
             'municipality'   => $municipality
         ];
-        
+
         return response()->json($data);
     }
 
@@ -112,14 +112,14 @@ class MunicipalityController extends Controller
         $municipality->nom = $validated['nom'] ?? null;
 		$municipality->slug = $validated['slug'] ?? null;
 		$municipality->city_id = $validated['city_id'] ?? null;
-		
+
         $municipality->save();
 
         $data = [
             'success'       => true,
             'municipality'   => $municipality
         ];
-        
+
         return response()->json($data);
     }
 
@@ -130,7 +130,7 @@ class MunicipalityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Municipality $municipality)
-    {   
+    {
         $municipality->delete();
 
         $data = [

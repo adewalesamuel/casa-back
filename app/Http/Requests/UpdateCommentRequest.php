@@ -24,11 +24,11 @@ class UpdateCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required|string',
-			'score' => 'required|integer',
-			'product_id' => 'required|integer|exists:products,id',
-			'user_id' => 'required|integer|exists:users,id',
-			
+            'description' => 'nullable|string',
+			'score' => 'nullable|integer',
+			'product_id' => 'nullable|integer|exists:products,id',
+			'user_id' => 'nullable|integer|exists:users,id',
+
         ];
     }
 }

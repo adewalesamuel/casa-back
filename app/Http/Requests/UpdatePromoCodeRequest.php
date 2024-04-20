@@ -24,11 +24,11 @@ class UpdatePromoCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|integer|unique:promo_codes',
-			'expiration_date' => 'required|date',
-			'type' => 'required|string',
-			'user_id' => 'required|integer|exists:users,id',
-			
+            'code' => 'nullable|integer',
+			'expiration_date' => 'nullable|date',
+			'type' => 'nullable|string',
+			'user_id' => 'nullable|integer|exists:users,id',
+
         ];
     }
 }

@@ -24,10 +24,10 @@ class UpdateCityRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
-			'slug' => 'required|string|unique:citys',
-			'region_id' => 'required|integer|exists:regions,id',
-			
+            'nom' => 'nullable|string',
+			'slug' => 'nullable|string',
+			'region_id' => 'nullable|integer|exists:regions,id',
+
         ];
     }
 }

@@ -24,17 +24,17 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'required|string',
-			'slug' => 'required|string|unique:products',
-			'description' => 'required|string',
-			'prix' => 'required|integer',
-			'type_paiement' => 'required|string',
-			'type' => 'required|string',
-			'display_img_url_list' => 'required|json',
-			'images_url_list' => 'required|json',
-			'category_id' => 'required|integer|exists:categories,id',
-			'municipality_id' => 'required|integer|exists:municipalitys,id',
-			'user_id' => 'required|integer|exists:users,id',
+            'nom' => 'nullable|string',
+			'slug' => 'nullable|string',
+			'description' => 'nullable|string',
+			'prix' => 'nullable|integer',
+			'type_paiement' => 'nullable|string',
+			'type' => 'nullable|string',
+			'display_img_url_list' => 'nullable|json',
+			'images_url_list' => 'nullable|json',
+			'category_id' => 'nullable|integer|exists:categories,id',
+			'municipality_id' => 'nullable|integer|exists:municipalities,id',
+			'user_id' => 'nullable|integer|exists:users,id',
 
         ];
     }
