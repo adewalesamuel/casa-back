@@ -20,7 +20,7 @@ class AdminController extends Controller
     	$admins = Admin::where('id', '>', -1)
         ->orderBy('created_at', 'desc');
 
-        if ($request->input('page') == null || 
+        if ($request->input('page') == null ||
             $request->input('page') == '') {
             $admins = $admins->get();
         } else {
@@ -60,16 +60,17 @@ class AdminController extends Controller
         $admin->nom = $validated['nom'] ?? null;
 		$admin->email = $validated['email'] ?? null;
 		$admin->password = $validated['password'] ?? null;
+        $admin->api_token = Str::random(60);
 		$admin->profile_img_url = $validated['profile_img_url'] ?? null;
 		$admin->role_id = $validated['role_id'] ?? null;
-		
+
         $admin->save();
 
         $data = [
             'success'       => true,
             'admin'   => $admin
         ];
-        
+
         return response()->json($data);
     }
 
@@ -116,14 +117,14 @@ class AdminController extends Controller
 		$admin->password = $validated['password'] ?? null;
 		$admin->profile_img_url = $validated['profile_img_url'] ?? null;
 		$admin->role_id = $validated['role_id'] ?? null;
-		
+
         $admin->save();
 
         $data = [
             'success'       => true,
             'admin'   => $admin
         ];
-        
+
         return response()->json($data);
     }
 
@@ -134,7 +135,7 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Admin $admin)
-    {   
+    {
         $admin->delete();
 
         $data = [

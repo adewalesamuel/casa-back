@@ -6,16 +6,9 @@ use App\Http\Auth as HttpAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\ForgotPasswordRequest;
-use App\Http\Requests\ResetPasswordRequest;
-use App\Jobs\AdminMailNotificationJob;
-use App\Notifications\UserRegisterNotification;
-use Illuminate\Support\Facades\Http;
 
 class ApiUserAuthController extends Controller
 {

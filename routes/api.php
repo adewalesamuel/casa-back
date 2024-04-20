@@ -99,18 +99,26 @@ Route::prefix('admin')->group(function() {
         Route::put('users/{user}', [UserController::class, 'update']);
         Route::delete('users/{user}', [UserController::class, 'destroy']);
 
+        Route::get('categories',[CategoryController::class, 'index']);
+        Route::get('categories/{category}', [CategoryController::class, 'show']);
         Route::post('categories',[CategoryController::class, 'store']);
         Route::put('categories/{category}', [CategoryController::class, 'update']);
         Route::delete('categories/{category}', [CategoryController::class, 'destroy']);
 
+        Route::get('regions',[RegionController::class, 'index']);
+        Route::get('regions/{region}', [RegionController::class, 'show']);
         Route::post('regions',[RegionController::class, 'store']);
         Route::put('regions/{region}', [RegionController::class, 'update']);
         Route::delete('regions/{region}', [RegionController::class, 'destroy']);
 
+        Route::get('cities',[CityController::class, 'index']);
+        Route::get('cities/{city}', [CityController::class, 'show']);
         Route::post('cities',[CityController::class, 'store']);
         Route::put('cities/{city}', [CityController::class, 'update']);
         Route::delete('cities/{city}', [CityController::class, 'destroy']);
 
+        Route::get('municipalities',[MunicipalityController::class, 'index']);
+        Route::get('municipalities/{municipality}', [MunicipalityController::class, 'show']);
         Route::post('municipalities',[MunicipalityController::class, 'store']);
         Route::put('municipalities/{municipality}', [MunicipalityController::class, 'update']);
         Route::delete('municipalities/{municipality}', [MunicipalityController::class, 'destroy']);
@@ -121,6 +129,8 @@ Route::prefix('admin')->group(function() {
         Route::put('features/{feature}', [FeatureController::class, 'update']);
         Route::delete('features/{feature}', [FeatureController::class, 'destroy']);
 
+        Route::get('products',[ProductController::class, 'index']);
+        Route::get('products/{slug}', [ProductController::class, 'show_by_slug']);
         Route::post('products',[ProductController::class, 'store']);
         Route::put('products/{product}', [ProductController::class, 'update']);
         Route::delete('products/{product}', [ProductController::class, 'destroy']);
@@ -131,6 +141,8 @@ Route::prefix('admin')->group(function() {
         Route::put('feature-products/{feature_product}', [FeatureProductController::class, 'update']);
         Route::delete('feature-products/{feature_product}', [FeatureProductController::class, 'destroy']);
 
+        Route::get('comments',[CommentController::class, 'index']);
+        Route::get('comments/{comment}', [CommentController::class, 'show']);
         Route::post('comments',[CommentController::class, 'store']);
         Route::put('comments/{comment}', [CommentController::class, 'update']);
         Route::delete('comments/{comment}', [CommentController::class, 'destroy']);
