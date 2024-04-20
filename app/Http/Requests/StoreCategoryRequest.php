@@ -25,7 +25,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'nom' => 'nullable|string',
-			'slug' => 'nullable|string|categories',
+			'slug' => 'nullable|string|unique:categories',
 			'description' => 'nullable|string',
 			'icon_img_url' => 'nullable|string',
 			'display_img_url' => 'nullable|string',
