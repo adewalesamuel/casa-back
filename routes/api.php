@@ -18,6 +18,7 @@ use App\Http\Controllers\FeatureProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PromoCodeController;
+use App\Http\Controllers\FileController;
 
 
 /*
@@ -54,6 +55,10 @@ Route::post('login', [ApiUserAuthController::class, 'login']);
 Route::post('logout', [ApiUserAuthController::class, 'logout']);
 
 Route::middleware('auth.api_token:user')->group(function() {
+    Route::put('profile', [UserController::class, 'profile_update']);
+
+    Route::post('upload', [FileController::class, 'store']);
+
     Route::get('user/products', [ProductController::class, 'user_index']);
     Route::post('user/products',[ProductController::class, 'user_store']);
     Route::put('user/products/{product}', [ProductController::class, 'user_update']);
