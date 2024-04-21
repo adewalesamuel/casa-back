@@ -57,7 +57,7 @@ Route::post('logout', [ApiUserAuthController::class, 'logout']);
 Route::middleware('auth.api_token:user')->group(function() {
     Route::put('profile', [UserController::class, 'profile_update']);
 
-    Route::post('upload', [FileController::class, 'store']);
+    Route::post('upload', [FileController::class, 'image_store']);
 
     Route::get('user/products', [ProductController::class, 'user_index']);
     Route::post('user/products',[ProductController::class, 'user_store']);
