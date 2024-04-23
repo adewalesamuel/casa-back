@@ -136,7 +136,6 @@ class UserController extends Controller
 
         $user->nom = $validated['nom'] ?? null;
 		$user->email = $validated['email'] ?? null;
-		$user->password = $validated['password'] ?? null;
 		$user->profile_img_url = $validated['profile_img_url'] ?? null;
 		$user->genre = $validated['genre'] ?? null;
 		$user->adresse = $validated['adresse'] ?? null;
@@ -148,6 +147,9 @@ class UserController extends Controller
 		$user->type = $validated['type'] ?? 'client';
 		$user->is_active = $validated['is_active'] ?? true;
 		$user->is_company = $validated['is_company'] ?? false;
+
+        if (isset($validated['password']))
+            $user->password = $validated['password'];
 
         $user->save();
 
