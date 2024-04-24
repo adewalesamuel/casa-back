@@ -16,7 +16,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/admin/{any}', function () {
+Route::get('/admin{any}', function () {
     return view('admin');
 })->where('any', '.*');
 
