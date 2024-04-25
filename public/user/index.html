@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Casa</title>
     
-    <script type="module" crossorigin src="/user/assets/index-BEdK0_Wq.js"></script>
+    <script type="module" crossorigin src="/user/assets/index-CwiZlMVA.js"></script>
     <link rel="stylesheet" crossorigin href="/user/assets/index-DlSpyfYR.css">
   </head>
   <body>
