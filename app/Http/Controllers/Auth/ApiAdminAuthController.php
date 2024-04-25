@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Auth as HttpAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
@@ -13,7 +14,7 @@ class ApiAdminAuthController extends Controller
 {
     public function login(Request $request) {
         $credentials = $request->only("email", "password");
-    
+
         if (!Auth::guard('admin')->once($credentials)) {
             $data = [
                 'error' => true,
@@ -36,8 +37,7 @@ class ApiAdminAuthController extends Controller
     }
 
     public function logout(Request $request) {
-        $token = explode(" ", $request->header('Authorization'))[1];
-        $admin = Admin::where('api_token', $token)->first();
+        $admin = HttpAuth::getUser($request, HttpAuth::ADMIN);
 
         if (!$admin) {
             $data = [
@@ -58,5 +58,5 @@ class ApiAdminAuthController extends Controller
 
         return response()->json($data, 200);
     }
-    
+
 }
