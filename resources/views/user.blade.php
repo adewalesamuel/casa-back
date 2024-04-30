@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/user/vite.svg" />
+    <link rel="icon" type="image/ico" href="/user/favicon.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Casa</title>
     
-    <script type="module" crossorigin src="/user/assets/index-CwiZlMVA.js"></script>
-    <link rel="stylesheet" crossorigin href="/user/assets/index-DlSpyfYR.css">
+    <script type="module" crossorigin src="/user/assets/index-OT7nxT8H.js"></script>
+    <link rel="stylesheet" crossorigin href="/user/assets/index-DB4SuChC.css">
   </head>
   <body>
     <div id="root"></div>
