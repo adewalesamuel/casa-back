@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use App\Casts\Ucfirst;
 use App\Casts\Slug;
 
@@ -31,8 +32,8 @@ class Product extends Model
 
 	public function casts() {
 		return [
-			'display_img_url_list' => 'json',
-			'images_url_list' => 'json',
+			'display_img_url_list' => 'array',
+			'images_url_list' => 'array',
 			'type' => Ucfirst::class,
 			'slug' => Slug::class
 		];

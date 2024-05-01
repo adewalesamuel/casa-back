@@ -118,7 +118,7 @@ class ProductController extends Controller
         $product = new Product;
 
         $product->nom = $validated['nom'] ?? null;
-		$product->slug = $validated['slug'] ?? null;
+		$product->slug = Str::slug($validated['nom']);
 		$product->description = $validated['description'] ?? null;
 		$product->prix = $validated['prix'] ?? null;
 		$product->type_paiement = $validated['type_paiement'] ?? null;
@@ -147,7 +147,7 @@ class ProductController extends Controller
         $product = new Product;
 
         $product->nom = $validated['nom'] ?? null;
-		$product->slug = $validated['slug'] ?? null;
+		$product->slug = Str::slug($validated['nom']);
 		$product->description = $validated['description'] ?? null;
 		$product->prix = $validated['prix'] ?? null;
 		$product->type_paiement = $validated['type_paiement'] ?? null;
@@ -221,7 +221,6 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $product->nom = $validated['nom'] ?? null;
-		$product->slug = $validated['slug'] ?? null;
 		$product->description = $validated['description'] ?? null;
 		$product->prix = $validated['prix'] ?? null;
 		$product->type_paiement = $validated['type_paiement'] ?? null;
@@ -257,7 +256,6 @@ class ProductController extends Controller
         }
 
         $product->nom = $validated['nom'] ?? null;
-		$product->slug = $validated['slug'] ?? null;
 		$product->description = $validated['description'] ?? null;
 		$product->prix = $validated['prix'] ?? null;
 		$product->type_paiement = $validated['type_paiement'] ?? null;

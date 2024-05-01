@@ -58,6 +58,7 @@ Route::middleware('auth.api_token:user')->group(function() {
     Route::put('profile', [UserController::class, 'profile_update']);
 
     Route::post('upload', [FileController::class, 'image_store']);
+    Route::post('product/upload', [FileController::class, 'product_image_store']);
 
     Route::get('user/products', [ProductController::class, 'user_index']);
     Route::post('user/products',[ProductController::class, 'user_store']);
@@ -80,6 +81,9 @@ Route::prefix('admin')->group(function() {
     Route::post('logout', [ApiAdminAuthController::class, 'logout']);
 
     Route::middleware('auth.api_token:admin')->group(function() {
+            Route::post('upload', [FileController::class, 'image_store']);
+            Route::post('product/upload', [FileController::class, 'product_image_store']);
+
         Route::get('permissions',[PermissionController::class, 'index']);
         Route::post('permissions',[PermissionController::class, 'store']);
         Route::get('permissions/{permission}', [PermissionController::class, 'show']);

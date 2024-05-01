@@ -25,16 +25,15 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'nom' => 'required|string',
-			'slug' => 'required|string|unique:products',
 			'description' => 'required|string',
 			'prix' => 'required|integer',
 			'type_paiement' => 'required|string',
 			'type' => 'required|string',
-			'display_img_url_list' => 'required|json',
-			'images_url_list' => 'required|json',
+			'display_img_url_list' => 'required|array',
+			'images_url_list' => 'required|array',
 			'category_id' => 'required|integer|exists:categories,id',
 			'municipality_id' => 'required|integer|exists:municipalities,id',
-			'user_id' => 'required|integer|exists:users,id',
+			'user_id' => 'nullable|integer|exists:users,id',
 
         ];
     }
