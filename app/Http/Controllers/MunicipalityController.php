@@ -17,7 +17,7 @@ class MunicipalityController extends Controller
      */
     public function index(Request $request)
     {
-    	$municipalities = Municipality::where('id', '>', -1)
+    	$municipalities = Municipality::with(['city'])
         ->orderBy('created_at', 'desc');
 
         if ($request->input('page') == null ||

@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $category = new Category;
 
         $category->nom = $validated['nom'] ?? null;
-		$category->slug = $validated['slug'] ?? null;
+		$category->slug = Str::slug($validated['nom']);
 		$category->description = $validated['description'] ?? null;
 		$category->icon_img_url = $validated['icon_img_url'] ?? null;
 		$category->display_img_url = $validated['display_img_url'] ?? null;
@@ -114,7 +114,7 @@ class CategoryController extends Controller
         $validated = $request->validated();
 
         $category->nom = $validated['nom'] ?? null;
-		$category->slug = $validated['slug'] ?? null;
+		$category->slug = Str::slug($validated['nom']);
 		$category->description = $validated['description'] ?? null;
 		$category->icon_img_url = $validated['icon_img_url'] ?? null;
 		$category->display_img_url = $validated['display_img_url'] ?? null;

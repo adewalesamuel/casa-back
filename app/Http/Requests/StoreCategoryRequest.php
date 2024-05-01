@@ -24,8 +24,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'nom' => 'nullable|string',
-			'slug' => 'nullable|string|unique:categories',
+            'nom' => 'required|string',
 			'description' => 'nullable|string',
 			'icon_img_url' => 'nullable|string',
 			'display_img_url' => 'nullable|string',

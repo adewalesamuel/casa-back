@@ -22,7 +22,8 @@ class ProductController extends Controller
     	$products = Product::with([
             'category',
             'municipality',
-            'municipality.city'
+            'municipality.city',
+            'user'
         ])->orderBy('created_at', 'desc');
 
         if ($request->input('municipality_id')) {
