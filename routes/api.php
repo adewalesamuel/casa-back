@@ -47,6 +47,8 @@ Route::get('products',[ProductController::class, 'index']);
 Route::get('products/{slug}', [ProductController::class, 'show_by_slug']);
 Route::get('categories/{slug}/products', [ProductController::class, 'category_index']);
 
+Route::get('products/{product}/features', [ProductController::class, 'features_index']);
+
 Route::get('comments',[CommentController::class, 'index']);
 Route::get('comments/{comment}', [CommentController::class, 'show']);
 
@@ -143,6 +145,7 @@ Route::prefix('admin')->group(function() {
         Route::post('products',[ProductController::class, 'store']);
         Route::put('products/{product}', [ProductController::class, 'update']);
         Route::delete('products/{product}', [ProductController::class, 'destroy']);
+        Route::get('products/{product}/features', [ProductController::class, 'features_index']);
 
         Route::get('feature-products',[FeatureProductController::class, 'index']);
         Route::post('feature-products',[FeatureProductController::class, 'store']);

@@ -131,7 +131,7 @@ class FeatureProductController extends Controller
      */
     public function destroy(FeatureProduct $feature_product)
     {   
-        $feature_product->delete();
+        $feature_product->forceDelete();
 
         $data = [
             'success' => true,

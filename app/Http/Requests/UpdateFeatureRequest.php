@@ -25,7 +25,6 @@ class UpdateFeatureRequest extends FormRequest
     {
         return [
             'nom' => 'nullable|string',
-			'slug' => 'nullable|string',
 			'icon_img_url' => 'nullable|string',
 			'display_img_url' => 'nullable|string',
 

@@ -95,6 +95,15 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
+    public function features_index(Request $request, Product $product) {
+        $data = [
+            'success' => true,
+            'features' => $product->features
+        ];
+
+        return response()->json($data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

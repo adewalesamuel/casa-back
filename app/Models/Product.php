@@ -27,7 +27,7 @@ class Product extends Model
 	}
 
     public function features() {
-        return $this->belongsToMany(Feature::class, 'feature_products')->withPivot(['quantite']);
+        return $this->belongsToMany(Feature::class, 'feature_products')->withPivot(['quantite', 'id']);
     }
 
 	public function casts() {

@@ -25,9 +25,8 @@ class StoreFeatureRequest extends FormRequest
     {
         return [
             'nom' => 'required|string',
-			'slug' => 'required|string|unique:features',
-			'icon_img_url' => 'required|string',
-			'display_img_url' => 'required|string',
+			'icon_img_url' => 'nullable|string',
+			'display_img_url' => 'nullable|string',
 			
         ];
     }

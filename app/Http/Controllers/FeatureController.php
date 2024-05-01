@@ -58,7 +58,7 @@ class FeatureController extends Controller
         $feature = new Feature;
 
         $feature->nom = $validated['nom'] ?? null;
-		$feature->slug = $validated['slug'] ?? null;
+		$feature->slug = Str::slug($validated['nom']);
 		$feature->icon_img_url = $validated['icon_img_url'] ?? null;
 		$feature->display_img_url = $validated['display_img_url'] ?? null;
 		
@@ -111,7 +111,6 @@ class FeatureController extends Controller
         $validated = $request->validated();
 
         $feature->nom = $validated['nom'] ?? null;
-		$feature->slug = $validated['slug'] ?? null;
 		$feature->icon_img_url = $validated['icon_img_url'] ?? null;
 		$feature->display_img_url = $validated['display_img_url'] ?? null;
 		
