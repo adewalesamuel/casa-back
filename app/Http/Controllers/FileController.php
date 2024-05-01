@@ -51,18 +51,17 @@ class FileController extends Controller
             $image_url_prefix =  config('app.url') . '/uploads/';
 
             $image = Image::make("{$storage_path}/{$image_path}");
-            $display_file_name = Str::random(40) . "j";
 
-            $image->resize(597,447)
-            ->save("{$storage_path}/$display_file_name");
-            $image->resize(212,159)
-            ->save("{$storage_path}/$thumbnail_file_name");
+            $image->fit(607,457)->fill()
+            ->save("{$storage_path}/{$display_file_name}");
+            $image->fit(222,169)
+            ->save("{$storage_path}/{$thumbnail_file_name}");
 
             $data = [
                 'success' => true,
                 'image_url' => [
-                    'display_img_url' => "$image_url_prefix/{$display_file_name}",
-                    'img_url' => "$image_url_prefix/{$thumbnail_file_name}"
+                    'display_img_url' => "{$image_url_prefix}{$display_file_name}",
+                    'img_url' => "{$image_url_prefix}{$thumbnail_file_name}"
                 ]
             ];
             return response()->json($data);
