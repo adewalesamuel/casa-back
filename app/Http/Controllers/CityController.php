@@ -17,7 +17,7 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-    	$cities = City::with(['region'])
+    	$cities = City::with(['region', 'municipalities'])
         ->orderBy('nom', 'asc');
 
         if ($request->input('page') == null ||
