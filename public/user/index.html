@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imothep Group</title>
     
-    <script type="module" crossorigin src="/user/assets/index-BGpo6HVi.js"></script>
+    <script type="module" crossorigin src="/user/assets/index-BCzSHW_l.js"></script>
     <link rel="stylesheet" crossorigin href="/user/assets/index-DB4SuChC.css">
   </head>
   <body>
