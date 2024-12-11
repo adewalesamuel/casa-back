@@ -16,6 +16,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::get('/uploads/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    return response()->file($path);
+});
+
 Route::get('/admin{any}', function () {
     return view('admin');
 })->where('any', '.*');
