@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
         return [
             'nom' => 'nullable|string',
 			'email' => 'required|string|unique:users',
-			'password' => 'required|string',
+			'password' => 'required|string|confirmed',
 			'profile_img_url' => 'nullable|string',
 			'genre' => 'nullable|string',
 			'adresse' => 'nullable|string',
