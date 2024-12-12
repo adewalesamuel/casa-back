@@ -30,6 +30,16 @@ class Product extends Model
         return $this->belongsToMany(Feature::class, 'feature_products')->withPivot(['quantite', 'id']);
     }
 
+    /**
+     * Get all of the views for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
+
 	public function casts() {
 		return [
 			'display_img_url_list' => 'array',

@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Repository\AccountRepository;
+use Illuminate\Support\Facades\DB;
 
 class ApiUserAuthController extends Controller
 {
@@ -38,28 +40,44 @@ class ApiUserAuthController extends Controller
     public function register(StoreUserRequest $request) {
         $validated = $request->validated();
 
-        $user = new User;
-        $token =  Str::random(60);
+        DB::beginTransaction();
+        try {
+            $user = new User;
+            $token =  Str::random(60);
 
-        $user->nom = $validated['nom'] ?? null;
-		$user->email = $validated['email'] ?? null;
-		$user->password = $validated['password'] ?? null;
-		$user->profile_img_url = $validated['profile_img_url'] ?? null;
-		$user->genre = $validated['genre'] ?? null;
-		$user->adresse = $validated['adresse'] ?? null;
-		$user->numero_telephone = $validated['numero_telephone'] ?? null;
-		$user->numero_whatsapp = $validated['numero_whatsapp'] ?? null;
-		$user->numero_telegram = $validated['numero_telegram'] ?? null;
-		$user->company_name = $validated['company_name'] ?? null;
-		$user->company_logo_url = $validated['company_logo_url'] ?? null;
-		$user->type = $validated['type'] ?? 'client';
-		$user->is_company = $validated['is_company'] ?? false;
-        $user->api_token = $token;
+            $user->nom = $validated['nom'] ?? null;
+            $user->email = $validated['email'] ?? null;
+            $user->password = $validated['password'] ?? null;
+            $user->profile_img_url = $validated['profile_img_url'] ?? null;
+            $user->genre = $validated['genre'] ?? null;
+            $user->adresse = $validated['adresse'] ?? null;
+            $user->numero_telephone = $validated['numero_telephone'] ?? null;
+            $user->numero_whatsapp = $validated['numero_whatsapp'] ?? null;
+            $user->numero_telegram = $validated['numero_telegram'] ?? null;
+            $user->company_name = $validated['company_name'] ?? null;
+            $user->company_logo_url = $validated['company_logo_url'] ?? null;
+            $user->type = $validated['type'] ?? 'client';
+            $user->is_company = $validated['is_company'] ?? false;
+            $user->api_token = $token;
 
-        $user->save();
+            $user->save();
 
-        // AdminMailNotificationJob::dispatchAfterResponse(
-        //     new UserRegisterNotification($user));
+            if ($user->isVendeur()) {
+                AccountRepository::store([
+                    'user_id' =>  $user->id,
+                    'is_active' => true
+                ]);
+                $user->account;
+            }
+
+            // AdminMailNotificationJob::dispatchAfterResponse(
+            //  new UserRegisterNotification($user));
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            abort(400, $th->getMessage());
+        }
 
         $data = [
             'success'  => true,

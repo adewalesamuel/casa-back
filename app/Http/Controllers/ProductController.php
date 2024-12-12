@@ -154,6 +154,9 @@ class ProductController extends Controller
         $user = Auth::getUser($request, Auth::USER);
         $validated = $request->validated();
 
+        if (!$user->account()->hasMinCreditBalance())
+            abort(402, "Votre crédit est insuffisant");
+
         $product = new Product;
 
         $product->nom = $validated['nom'] ?? null;

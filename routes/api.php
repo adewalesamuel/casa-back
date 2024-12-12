@@ -19,6 +19,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PromoCodeController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ViewController;
 
 
 /*
@@ -56,6 +59,8 @@ Route::post('register', [ApiUserAuthController::class, 'register']);
 Route::post('login', [ApiUserAuthController::class, 'login']);
 Route::post('logout', [ApiUserAuthController::class, 'logout']);
 
+Route::post('views',[ViewController::class, 'store']);
+
 Route::middleware('auth.api_token:user')->group(function() {
     Route::put('profile', [UserController::class, 'profile_update']);
 
@@ -76,6 +81,13 @@ Route::middleware('auth.api_token:user')->group(function() {
     Route::get('favorites/{favorite}', [FavoriteController::class, 'show']);
     Route::put('favorites/{favorite}', [FavoriteController::class, 'update']);
     Route::delete('favorites/{favorite}', [FavoriteController::class, 'destroy']);
+
+    Route::get('transactions',[TransactionController::class, 'user_index']);
+    Route::post('transactions',[TransactionController::class, 'user_store']);
+    Route::get('transactions/{transaction}', [TransactionController::class, 'user_show']);
+
+    Route::get('views',[ViewController::class, 'user_index']);
+    Route::get('products/{product}/views',[ViewController::class, 'product_index']);
 });
 
 Route::prefix('admin')->group(function() {
@@ -83,8 +95,8 @@ Route::prefix('admin')->group(function() {
     Route::post('logout', [ApiAdminAuthController::class, 'logout']);
 
     Route::middleware('auth.api_token:admin')->group(function() {
-            Route::post('upload', [FileController::class, 'image_store']);
-            Route::post('product/upload', [FileController::class, 'product_image_store']);
+        Route::post('upload', [FileController::class, 'image_store']);
+        Route::post('product/upload', [FileController::class, 'product_image_store']);
 
         Route::get('permissions',[PermissionController::class, 'index']);
         Route::post('permissions',[PermissionController::class, 'store']);
@@ -170,6 +182,25 @@ Route::prefix('admin')->group(function() {
         Route::get('promo-codes/{promo_code}', [PromoCodeController::class, 'show']);
         Route::put('promo-codes/{promo_code}', [PromoCodeController::class, 'update']);
         Route::delete('promo-codes/{promo_code}', [PromoCodeController::class, 'destroy']);
+
+        Route::get('accounts',[AccountController::class, 'index']);
+        Route::post('accounts',[AccountController::class, 'store']);
+        Route::get('accounts/{account}', [AccountController::class, 'show']);
+        Route::put('accounts/{account}', [AccountController::class, 'update']);
+        Route::delete('accounts/{account}', [AccountController::class, 'destroy']);
+
+        Route::get('transactions',[TransactionController::class, 'index']);
+        Route::post('transactions',[TransactionController::class, 'store']);
+        Route::get('transactions/{transaction}', [TransactionController::class, 'show']);
+        Route::put('transactions/{transaction}', [TransactionController::class, 'update']);
+        Route::delete('transactions/{transaction}', [TransactionController::class, 'destroy']);
+
+        Route::get('views',[ViewController::class, 'index']);
+        Route::post('views',[ViewController::class, 'store']);
+        Route::get('views/{view}', [ViewController::class, 'show']);
+        Route::put('views/{view}', [ViewController::class, 'update']);
+        Route::delete('views/{view}', [ViewController::class, 'destroy']);
+
     });
 
 });
