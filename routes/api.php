@@ -47,7 +47,8 @@ Route::get('municipalities',[MunicipalityController::class, 'index']);
 Route::get('municipalities/{municipality}', [MunicipalityController::class, 'show']);
 
 Route::get('products',[ProductController::class, 'index']);
-Route::get('products/{slug}', [ProductController::class, 'show_by_slug']);
+Route::get('products/{product}', [ProductController::class, 'show']);
+Route::get('products-slug/{slug}', [ProductController::class, 'show_by_slug']);
 Route::get('categories/{slug}/products', [ProductController::class, 'category_index']);
 
 Route::get('products/{product}/features', [ProductController::class, 'features_index']);
@@ -65,12 +66,21 @@ Route::middleware('auth.api_token:user')->group(function() {
     Route::put('profile', [UserController::class, 'profile_update']);
 
     Route::post('upload', [FileController::class, 'image_store']);
+    Route::post('upload-file', [FileController::class, 'file_store']);
     Route::post('product/upload', [FileController::class, 'product_image_store']);
 
     Route::get('user/products', [ProductController::class, 'user_index']);
     Route::post('user/products',[ProductController::class, 'user_store']);
     Route::put('user/products/{product}', [ProductController::class, 'user_update']);
     Route::delete('user/products/{product}', [ProductController::class, 'user_destroy']);
+
+    Route::get('feature-products',[FeatureProductController::class, 'index']);
+    Route::post('feature-products',[FeatureProductController::class, 'store']);
+    Route::get('feature-products/{feature_product}', [FeatureProductController::class, 'show']);
+    Route::put('feature-products/{feature_product}', [FeatureProductController::class, 'update']);
+    Route::delete('feature-products/{feature_product}', [FeatureProductController::class, 'destroy']);
+
+    Route::get('features',[FeatureController::class, 'index']);
 
     Route::post('comments',[CommentController::class, 'user_store']);
     Route::put('comments/{comment}', [CommentController::class, 'user_update']);
@@ -96,6 +106,7 @@ Route::prefix('admin')->group(function() {
 
     Route::middleware('auth.api_token:admin')->group(function() {
         Route::post('upload', [FileController::class, 'image_store']);
+        Route::post('upload-file', [FileController::class, 'file_store']);
         Route::post('product/upload', [FileController::class, 'product_image_store']);
 
         Route::get('permissions',[PermissionController::class, 'index']);

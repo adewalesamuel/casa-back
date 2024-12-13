@@ -36,6 +36,7 @@ class StoreUserRequest extends FormRequest
 			'company_name' => 'nullable|string',
 			'company_logo_url' => 'nullable|string',
 			'type' => 'nullable|string',
+            'id_card_url' => 'nullable|string'
 
         ];
     }

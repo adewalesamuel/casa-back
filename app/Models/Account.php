@@ -29,9 +29,9 @@ class Account extends Model
 
     public function hasMinCreditBalance() {
         $transaction_credit_sum = $this->transactions()
-        ->where('type', TransactionType::CREDIT)->sum();
+        ->where('type', TransactionType::CREDIT)->sum('amount');
         $transaction_debit_sum = $this->transactions()
-        ->where('type', TransactionType::DEBIT)->sum();
+        ->where('type', TransactionType::DEBIT)->sum('amount');
 
         return ($transaction_credit_sum - $transaction_debit_sum) >= Casa::MIN_CREDIT_BALANCE;
     }

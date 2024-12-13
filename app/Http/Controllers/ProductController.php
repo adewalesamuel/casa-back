@@ -78,7 +78,11 @@ class ProductController extends Controller
     {
         $user = Auth::getUser($request, Auth::USER);
 
-    	$products = Product::where('user_id', $user->id)
+    	$products = Product::where('user_id', $user->id)->with([
+            'category',
+            'municipality',
+            'municipality.city',
+        ])
         ->orderBy('created_at', 'desc');
 
         if ($request->input('page') == null ||
@@ -154,8 +158,8 @@ class ProductController extends Controller
         $user = Auth::getUser($request, Auth::USER);
         $validated = $request->validated();
 
-        if (!$user->account()->hasMinCreditBalance())
-            abort(402, "Votre crédit est insuffisant");
+        if (!$user->account->hasMinCreditBalance())
+            abort(402, "Votre crédit est insuffisant. Veuillez recharger votre compte");
 
         $product = new Product;
 

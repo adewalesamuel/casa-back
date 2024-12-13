@@ -73,6 +73,7 @@ class UserController extends Controller
 		$user->api_token = Str::random(60);
 		$user->is_active = $validated['is_active'] ?? true;
 		$user->is_company = $validated['is_company'] ?? false;
+		$user->id_card_url = $validated['id_card_url'] ?? false;
 
         $user->save();
 
@@ -147,6 +148,7 @@ class UserController extends Controller
 		$user->type = $validated['type'] ?? 'client';
 		$user->is_active = $validated['is_active'] ?? true;
 		$user->is_company = $validated['is_company'] ?? false;
+		$user->id_card_url = $validated['id_card_url'] ?? false;
 
         if (isset($validated['password']))
             $user->password = $validated['password'];
@@ -178,6 +180,7 @@ class UserController extends Controller
 		$user->company_logo_url = $validated['company_logo_url'] ?? null;
 		$user->type = $validated['type'] ?? 'client';
 		$user->is_company = $validated['is_company'] ?? false;
+		$user->id_card_url = $validated['id_card_url'] ?? false;
 
         $user->save();
 

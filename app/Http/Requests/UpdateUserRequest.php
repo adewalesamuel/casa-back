@@ -39,7 +39,7 @@ class UpdateUserRequest extends FormRequest
 			'api_token' => 'nullable|string',
 			'is_active' => 'nullable|boolean',
 			'is_company' => 'nullable|boolean',
-
+            'id_card_url' => 'nullable|string',
         ];
     }
 }
