@@ -25,7 +25,7 @@ class StoreViewRequest extends FormRequest
     {
         return [
             'product_id' => 'required|integer|exists:products,id',
-			'user_id' => 'nullable|string|exists:users,id',
+			'user_id' => 'nullable|integer|exists:users,id',
 
         ];
     }

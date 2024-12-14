@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Account;
 use App\Models\Category;
 use Illuminate\Support\Str;
 
@@ -203,8 +204,18 @@ class ProductController extends Controller
 
     public function show_by_slug(Request $request, string $slug)
     {
-        $product = Product::with(['category', 'municipality', 'user', 'features'])
-        ->where('slug', $slug)->firstOrFail();
+        $product = Product::with([
+            'category',
+            'municipality',
+            'user',
+            'user.account',
+            'features'])
+            ->where('slug', $slug)->firstOrFail();
+
+        $account = Account::find($product?->user?->account->id);
+
+        if ($account && !$account->hasMinCreditBalance())
+            return abort(402, "Une erreur est survenue. Veuillez contacter l'administrateur");
 
         $data = [
             'success' => true,

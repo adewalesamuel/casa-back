@@ -28,7 +28,7 @@ class StoreTransactionRequest extends FormRequest
 			'type' => 'required|string',
 			'author' => 'required|string',
 			'description' => 'nullable|string',
-			'account_id' => 'required|integer|exists:accounts,id',
+			'account_id' => 'nullable|integer|exists:accounts,id',
 
         ];
     }

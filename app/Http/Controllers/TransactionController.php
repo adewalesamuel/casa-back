@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Casa\TransactionAuthor;
 use App\Http\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
@@ -41,8 +40,8 @@ class TransactionController extends Controller
         $auth_user = Auth::getUser($request, Auth::USER);
         $data = [
             'success' => true,
-            'transactions' => $auth_user->account()
-            ->transactions()->orderBy('©reated_at', 'desc')->paginate()
+            'transactions' => $auth_user->account->transactions()
+            ->orderBy('created_at', 'desc')->paginate()
         ];
 
         return response()->json($data, 200);
@@ -94,7 +93,7 @@ class TransactionController extends Controller
 
         $transaction->amount = $validated['amount'] ?? null;
 		$transaction->type = $validated['type'] ?? null;
-		$transaction->author = TransactionAuthor::SELF;
+		$transaction->author = $validated['author'] ?? TransactionAuthor::SELF;
 		$transaction->description = $validated['description'] ?? null;
 		$transaction->account_id = $auth_user->account->id;
 
@@ -123,7 +122,7 @@ class TransactionController extends Controller
 
         return response()->json($data);
     }
-    
+
     public function user_show(Request $request, Transaction $transaction)
     {
         $auth_user = Auth::getUser($request, Auth::USER);

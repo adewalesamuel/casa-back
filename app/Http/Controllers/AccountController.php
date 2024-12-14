@@ -60,15 +60,16 @@ class AccountController extends Controller
 
     public function user_analytics(Request $request) {
         $auth_user = Auth::getUser($request, Auth::USER);
-        $account = $auth_user->account();
+        $account = $auth_user->account;
+        $credit_sum = $account->transactions()
+        ->where('type', TransactionType::CREDIT)->sum('amount');
+        $debit_sum = $account->transactions()
+        ->where('type', TransactionType::DEBIT)->sum('amount');
 
         $data = [
-            'credit_sum' => $account->transactions()
-            ->where('type', TransactionType::CREDIT)->sum(),
-            'debit_sum' => $account->transactions()
-            ->where('type', TransactionType::DEBIT)->sum(),
-            'other_sum' => $account->transactions()
-            ->where('type', TransactionType::OTHER)->sum()
+            'credit_sum' => $credit_sum,
+            'debit_sum' => $debit_sum,
+            'current_balance' => $credit_sum - $debit_sum
         ];
 
         return response()->json($data, 200);

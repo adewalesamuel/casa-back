@@ -98,6 +98,8 @@ Route::middleware('auth.api_token:user')->group(function() {
 
     Route::get('views',[ViewController::class, 'user_index']);
     Route::get('products/{product}/views',[ViewController::class, 'product_index']);
+
+    Route::get('accounts/analytics', [AccountController::class, 'user_analytics']);
 });
 
 Route::prefix('admin')->group(function() {
