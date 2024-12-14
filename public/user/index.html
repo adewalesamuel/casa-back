@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imothep Group</title>
-    
-    <script type="module" crossorigin src="/user/assets/index-CwWw9ITr.js"></script>
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script> 
+
+    <script type="module" crossorigin src="/user/assets/index-DvnAhn8J.js"></script>
     <link rel="stylesheet" crossorigin href="/user/assets/index-DB4SuChC.css">
   </head>
   <body>
