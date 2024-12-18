@@ -13,7 +13,7 @@
     <title>Imothep Group</title>
     <script src="https://cdn.cinetpay.com/seamless/main.js"></script> 
 
-    <script type="module" crossorigin src="/user/assets/index-DMALSKvP.js"></script>
+    <script type="module" crossorigin src="/user/assets/index-BMJnzrzB.js"></script>
     <link rel="stylesheet" crossorigin href="/user/assets/index-DB4SuChC.css">
   </head>
   <body>
