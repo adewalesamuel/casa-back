@@ -159,8 +159,8 @@ class ProductController extends Controller
         $user = Auth::getUser($request, Auth::USER);
         $validated = $request->validated();
 
-        if (!$user->account->hasMinCreditBalance())
-            abort(402, "Votre crédit est insuffisant. Veuillez recharger votre compte");
+        // if (!$user->account->hasMinCreditBalance())
+        //     abort(402, "Votre crédit est insuffisant. Veuillez recharger votre compte");
 
         $product = new Product;
 
@@ -214,8 +214,8 @@ class ProductController extends Controller
 
         $account = Account::find($product?->user?->account->id);
 
-        if ($account && !$account->hasMinCreditBalance())
-            return abort(402, "Une erreur est survenue. Veuillez contacter l'administrateur");
+        // if ($account && !$account->hasMinCreditBalance())
+        //     return abort(402, "Une erreur est survenue. Veuillez contacter l'administrateur");
 
         $data = [
             'success' => true,
